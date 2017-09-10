@@ -37,6 +37,7 @@
   "options_page": "pages/options.html",
 
   "permissions": [
+    "bookmarks",
     "chrome://favicon/",
     "<all_urls>"
   ]
