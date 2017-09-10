@@ -9,8 +9,8 @@ const NODE_ENV = process.env.NODE_ENV;
 const buildPath = path.join(__dirname, 'build/');
 const extensionPath = path.join(__dirname, 'extension/');
 
-// This webpack configuration builds processes javascript files with Babel and
-// bulk-copies static assets to the build/ directory when appropriate.
+// This webpack configuration builds javascript files with Babel and bulk-copies
+// static assets to the build/ directory when appropriate.
 
 if (NODE_ENV !== 'production') {
   module.exports.devtool = 'source-map';

@@ -11,7 +11,7 @@ import 'webextension-polyfill';
 // 1. Bookmarks, which store the saved URL.
 // 2. Extension data which correlates favicon URL, tag, alarm, etc. The favicon
 //    URL can be delegated to chrome://favicon/ but it seems unreliable and
-//    inconsistent, and given that at the favicon URL is known at time that the
+//    inconsistent, and given that the favicon URL is known at the time that the
 //    URL is saved, we might as well store it. This can be joined with the
 //    bookmark either by URL or by node ID.
 //
