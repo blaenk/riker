@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
+const IS_PRODUCTION = NODE_ENV === 'production';
 
 const buildPath = path.join(__dirname, 'build/');
 const extensionPath = path.join(__dirname, 'extension/');
@@ -14,7 +15,7 @@ const scriptsPath = path.join(extensionPath, 'scripts/');
 // This webpack configuration builds javascript files with Babel and bulk-copies
 // static assets to the build/ directory when appropriate.
 
-if (NODE_ENV !== 'production') {
+if (IS_PRODUCTION) {
   module.exports.devtool = 'source-map';
 }
 
@@ -58,7 +59,7 @@ module.exports.plugins.push(new CopyWebpackPlugin([
 ]));
 module.exports.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
 
-if (NODE_ENV === 'production') {
+if (IS_PRODUCTION) {
   module.exports.plugins.push(new MinifyPlugin());
 }
 
