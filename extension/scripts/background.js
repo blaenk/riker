@@ -175,7 +175,7 @@ async function getOrCreateFolder(name, id) {
   results = results.filter(isWithinStore);
 
   if (results.length === 1) {
-    return results[1];
+    return results[0];
   } else if (results.length > 1) {
     // TODO
     // Ensure this doesn't happen by using bookmark listeners?
