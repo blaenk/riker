@@ -1,0 +1,38 @@
+{
+  "name": "riker",
+  "version": "0.0.1",
+  "description": "Explore the frontier of the Internet with ease.",
+  "repository": "https://github.com/blaenk/riker",
+  "author": "Jorge Israel Peña <jorge.israel.p@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint extension/",
+    "build": "NODE_ENV=production webpack -p",
+    "watch": "NODE_ENV=development webpack --progress --colors --watch -d"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "chai": "^4.1.2",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "crx": "^3.2.1",
+    "eslint": "^4.6.1",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1",
+    "webpack": "^3.5.5"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "jquery": "^3.2.1",
+    "webextension-polyfill": "^0.1.1"
+  }
+}

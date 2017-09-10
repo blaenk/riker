@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+  "name": "Riker",
+  "version": "0.1",
+
+  "author": "Jorge Israel Peña",
+  "homepage_url": "https://github.com/blaenk/riker",
+
+  "description": "Explore the frontier of the Internet with ease.",
+  "icons": {
+    "16": "images/purple_plum/purple_plum_16.png",
+    "32": "images/purple_plum/purple_plum_32.png",
+    "48": "images/purple_plum/purple_plum_48.png",
+    "128": "images/purple_plum/purple_plum_128.png"
+  },
+
+  "browser_action": {
+    "default_title": "Open Riker",
+    "default_icon": "images/purple_plum/purple_plum_128.png",
+    "default_popup": "pages/popup.html"
+  },
+
+  "background": {
+    "persistent": false,
+    "page": "pages/background.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["styles/style.css"],
+      "js": ["scripts/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "options_page": "pages/options.html",
+
+  "permissions": [
+    "chrome://favicon/",
+    "<all_urls>"
+  ]
+}
