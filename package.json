@@ -8,13 +8,14 @@
   "scripts": {
     "lint": "eslint extension/",
     "lint-extension": "web-ext lint --source-dir build/",
-    "build": "NODE_ENV=production webpack -p",
-    "watch": "NODE_ENV=development webpack --progress --colors --watch -d"
+    "build": "NODE_ENV=production webpack --progress --colors",
+    "watch": "NODE_ENV=development webpack --progress --colors --watch"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
+    "babel-minify-webpack-plugin": "^0.2.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-optimize": "^1.0.1",

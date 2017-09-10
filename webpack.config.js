@@ -3,11 +3,13 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 
 const buildPath = path.join(__dirname, 'build/');
 const extensionPath = path.join(__dirname, 'extension/');
+const scriptsPath = path.join(extensionPath, 'scripts/');
 
 // This webpack configuration builds javascript files with Babel and bulk-copies
 // static assets to the build/ directory when appropriate.
@@ -17,9 +19,9 @@ if (NODE_ENV !== 'production') {
 }
 
 module.exports.entry = {
-  background: path.join(extensionPath, 'scripts/background.js'),
-  content: path.join(extensionPath, 'scripts/content.js'),
-  popup: path.join(extensionPath, 'scripts/popup.js'),
+  background: path.join(scriptsPath, 'background.js'),
+  content: path.join(scriptsPath, 'content.js'),
+  popup: path.join(scriptsPath, 'popup.js'),
 };
 
 module.exports.output = {
@@ -50,26 +52,14 @@ module.exports.plugins.push(new CopyWebpackPlugin([
   },
   // Images.
   {
-    from: path.join(extensionPath, 'static/images/'),
-    to: path.join(buildPath, 'images/'),
+    from: path.join(extensionPath, 'static/images/purple_plum/'),
+    to: path.join(buildPath, 'images/purple_plum/'),
   },
 ]));
 module.exports.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
 
 if (NODE_ENV === 'production') {
-  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compressor: {
-      screw_ie8: true,
-      warnings: false,
-    },
-    mangle: {
-      screw_ie8: true,
-    },
-    output: {
-      comments: false,
-      screw_ie8: true,
-    },
-  }));
+  module.exports.plugins.push(new MinifyPlugin());
 }
 
 module.exports.plugins.push(new webpack.DefinePlugin({
@@ -85,8 +75,5 @@ module.exports.module = {
 module.exports.module.loaders.push({
   test: /\.js$/,
   loader: 'babel-loader',
-  exclude: /node_modules/,
-  query: {
-    presets: ['react-optimize'],
-  },
+  include: [scriptsPath],
 });
