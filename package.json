@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint extension/",
+    "lint-extension": "web-ext lint --source-dir build/",
     "build": "NODE_ENV=production webpack -p",
     "watch": "NODE_ENV=development webpack --progress --colors --watch -d"
   },
@@ -28,6 +29,7 @@
     "eslint-plugin-react": "^7.3.0",
     "mocha": "^3.5.0",
     "sinon": "^3.2.1",
+    "web-ext": "^2.0.0",
     "webpack": "^3.5.5"
   },
   "dependencies": {
