@@ -46,7 +46,11 @@ export async function deleteTabs(tabs) {
   for (const tab of tabs) {
     delete store.links[tab.url];
 
-    await icon.disable(tab.id);
+    // If the tab is active, it won't take part in the lazy, automatic update of
+    // the tab when it's activated, since it's already active. Do it manually.
+    if (tab.active) {
+      icon.disable(tab.id);
+    }
   }
 
   return set(store);
