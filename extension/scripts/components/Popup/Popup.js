@@ -1,10 +1,8 @@
 import browser from 'webextension-polyfill';
 
-import { Store, set, get } from '../../lib/storage';
-import { Messages } from '../../lib/messages';
-
-// TODO
-// browser.storage.onChanged to monitor changes?
+import { Store, get } from '../../lib/storage';
+import * as messages from '../../lib/messages';
+import * as tabs from '../../lib/tabs';
 
 export default {
   data() {
@@ -21,7 +19,9 @@ export default {
   methods: {
     async saveTab(_event) {
       try {
-        const response = await browser.runtime.sendMessage(Messages.saveTab());
+        const currentTab = await tabs.current();
+
+        await messages.SaveTab(currentTab).emit();
 
         window.close();
       } catch (e) {
@@ -30,7 +30,9 @@ export default {
     },
     async deleteTab(_event) {
       try {
-        const response = await browser.runtime.sendMessage(Messages.deleteTab());
+        const currentTab = await tabs.current();
+
+        await messages.DeleteTab(currentTab).emit();
 
         window.close();
       } catch (e) {
@@ -46,14 +48,7 @@ export default {
   },
   async created() {
     // See if this link already exists.
-    const queryResult = await browser.tabs.query({
-      currentWindow: true,
-      active: true,
-    });
-
-    const currentTab = queryResult[0];
-
-    this.tab = currentTab;
+    this.tab = await tabs.current();
 
     // NOTE
     // If the tab can update under our nose while the popup is open, react to
@@ -61,14 +56,13 @@ export default {
 
     const { links } = await get(Store.links.key);
 
-    if (currentTab.url in links) {
-      this.link = links[currentTab.url];
+    if (this.tab.url in links) {
+      this.link = links[this.tab.url];
     }
 
     browser.storage.onChanged.addListener(this.onStorageChanged);
   },
   destroyed() {
-    console.log('Destroyed');
     browser.storage.onChanged.removeListener(this.onStorageChanged);
   },
 };

@@ -1,8 +1,8 @@
 import browser from 'webextension-polyfill';
 import moment from 'moment';
 
-import { Store, set, get } from '../../lib/storage';
-import { Messages } from '../../lib/messages';
+import { Store, get } from '../../lib/storage';
+import * as messages from '../../lib/messages';
 
 // TODO
 // browser.storage.onChanged to monitor changes?
@@ -20,8 +20,6 @@ export default {
   },
   methods: {
     onStorageChanged(changes, _areaName) {
-      console.info(changes);
-
       if (changes.links && changes.links.newValue) {
         this.links = changes.links.newValue;
       }
