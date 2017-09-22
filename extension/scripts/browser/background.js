@@ -32,15 +32,21 @@ async function updateIcon(tabId) {
   return disableIcon(tabId);
 }
 
+function linkForTab(tab) {
+  return {
+    url: tab.url,
+    title: tab.title,
+    faviconUrl: tab.favIconUrl,
+    date: (new Date()).toISOString(),
+    tags: [],
+  };
+}
+
 async function saveTabs(tabs) {
   const store = await get(Store.links.key);
 
   for (const tab of tabs) {
-    store.links[tab.url] = {
-      url: tab.url,
-      title: tab.title,
-      faviconUrl: tab.favIconUrl,
-    };
+    store.links[tab.url] = linkForTab(tab);
 
     // Optimistically assume the tabs made it and only if not go back and update
     // it. This should almost always work so this optimistic loop merging will
