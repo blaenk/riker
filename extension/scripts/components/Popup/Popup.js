@@ -20,8 +20,9 @@ export default {
     async saveTab(_event) {
       try {
         const currentTab = await tabs.current();
+        const message = new messages.SaveTab(currentTab);
 
-        await messages.SaveTab(currentTab).send();
+        await message.send();
 
         window.close();
       } catch (e) {
@@ -31,8 +32,9 @@ export default {
     async deleteTab(_event) {
       try {
         const currentTab = await tabs.current();
+        const message = messages.DeleteTab(currentTab);
 
-        await messages.DeleteTab(currentTab).send();
+        await message.send();
 
         window.close();
       } catch (e) {
