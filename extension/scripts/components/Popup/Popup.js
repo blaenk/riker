@@ -32,7 +32,7 @@ export default {
     async deleteTab(_event) {
       try {
         const currentTab = await tabs.current();
-        const message = messages.DeleteTab(currentTab);
+        const message = new messages.DeleteTab(currentTab);
 
         await message.send();
 
