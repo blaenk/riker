@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill';
+import moment from 'moment';
 
 import { Store, set, get } from '../../lib/storage';
 import { Messages } from '../../lib/messages';
@@ -11,6 +12,11 @@ export default {
     return {
       links: {},
     };
+  },
+  filters: {
+    formatDate(date) {
+      return moment(date).fromNow();
+    },
   },
   methods: {
     onStorageChanged(changes, _areaName) {
