@@ -3,6 +3,7 @@
     "env", {
       "useBuiltIns": true,
       "debug": false,
+      "modules": false,
       "targets": {
         "chrome": 55
       }
