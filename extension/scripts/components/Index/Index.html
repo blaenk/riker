@@ -1,6 +1,6 @@
 <div>
   <ul>
-    <li v-for="link in linksList">
+    <li v-for="link in linksList" :key="link.url">
       <img :src="link.faviconUrl" width="16" height="16" />
       <a :href="link.url">{{ link.title }}</a>
     </li>
