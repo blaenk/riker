@@ -1,3 +1,5 @@
+import browser from 'webextension-polyfill';
+
 import { Store, get } from './storage';
 
 export async function disable(tabId) {
