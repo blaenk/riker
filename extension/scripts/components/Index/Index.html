@@ -1,5 +1,8 @@
 <div>
-  <ul>
+  <p v-if="linksList.length === 0">
+    No links!
+  </p>
+  <ul v-else>
     <li v-for="link in linksList" :key="link.url">
       <img :src="link.faviconUrl" width="16" height="16" />
       <a :href="link.url">{{ link.title }}</a>
