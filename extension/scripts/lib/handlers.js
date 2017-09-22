@@ -4,6 +4,7 @@ import * as core from './core';
 import {
   MESSAGE_SAVE_TAB,
   MESSAGE_DELETE_TAB,
+  MESSAGE_DELETE_LINK,
 } from './messages';
 
 export function onTabUpdated(tabId, changeInfo, _tab) {
@@ -36,6 +37,10 @@ export async function onMessage(message, _sender) {
 
     case MESSAGE_DELETE_TAB:
       await core.deleteTabs(message.tab);
+      break;
+
+    case MESSAGE_DELETE_LINK:
+      await core.deleteLinks(message.link);
       break;
   }
 }

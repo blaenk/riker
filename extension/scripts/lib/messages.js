@@ -42,9 +42,9 @@ export class DeleteTab extends Message {
 export const MESSAGE_DELETE_LINK = 'MESSAGE_DELETE_LINK';
 
 export class DeleteLink extends Message {
-  constructor(url) {
+  constructor(link) {
     super(MESSAGE_DELETE_LINK);
 
-    this.payload.url = url;
+    this.payload.link = link;
   }
 }

@@ -4,6 +4,7 @@
   </p>
   <ul v-else>
     <li v-for="link in linksList" :key="link.url">
+      <button @click="deleteLink(link.url)">Delete</button>
       <img :src="link.faviconUrl" width="16" height="16" />
       <a :href="link.url">{{ link.title }}</a>
       saved {{ link.date | formatDate }}

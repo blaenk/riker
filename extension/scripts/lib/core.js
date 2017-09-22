@@ -1,3 +1,6 @@
+import browser from 'webextension-polyfill';
+import _ from 'lodash';
+
 import { Store, get, set } from './storage';
 import * as icon from './icon';
 
@@ -50,6 +53,33 @@ export async function deleteTabs(tabs) {
     // the tab when it's activated, since it's already active. Do it manually.
     if (tab.active) {
       icon.disable(tab.id);
+    }
+  }
+
+  return set(store);
+}
+
+// The difference between this and deleteTabs is that deleteTabs can only be
+// used on open tabs, whereas deleteLinks can be used on stored links whether or
+// not they have open tabs.
+export async function deleteLinks(links) {
+  const store = await get(Store.links.key);
+
+  // The icon must be refreshed for any active tabs open for a URL that is being
+  // deleted, since that icon wouldn't otherwise update until it became
+  // re-activated or updated.
+  const activeTabs = await browser.tabs.query({ active: true });
+  const activeTabsForUrl = _.groupBy(activeTabs, (tab) => tab.url);
+
+  links = Array.isArray(links) ? links : [links];
+
+  for (const link of links) {
+    delete store.links[link];
+
+    if (activeTabsForUrl[link]) {
+      for (const tab of activeTabsForUrl[link]) {
+        icon.disable(tab.id);
+      }
     }
   }
 

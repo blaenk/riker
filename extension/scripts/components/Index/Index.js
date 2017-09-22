@@ -24,6 +24,11 @@ export default {
         this.links = changes.links.newValue;
       }
     },
+    async deleteLink(url) {
+      const message = new messages.DeleteLink(url);
+
+      await message.send();
+    },
   },
   computed: {
     linksList() {
