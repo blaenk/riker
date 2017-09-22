@@ -14,7 +14,7 @@ export class Message {
     return this.payload;
   }
 
-  emit() {
+  send() {
     return browser.runtime.sendMessage(this.payload);
   }
 }

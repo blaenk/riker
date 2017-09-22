@@ -21,7 +21,7 @@ export default {
       try {
         const currentTab = await tabs.current();
 
-        await messages.SaveTab(currentTab).emit();
+        await messages.SaveTab(currentTab).send();
 
         window.close();
       } catch (e) {
@@ -32,7 +32,7 @@ export default {
       try {
         const currentTab = await tabs.current();
 
-        await messages.DeleteTab(currentTab).emit();
+        await messages.DeleteTab(currentTab).send();
 
         window.close();
       } catch (e) {
