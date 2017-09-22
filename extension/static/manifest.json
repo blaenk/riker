@@ -8,21 +8,29 @@
 
   "description": "Explore the frontier of the Internet with ease.",
   "icons": {
-    "16": "images/purple_plum/purple_plum_16.png",
-    "32": "images/purple_plum/purple_plum_32.png",
-    "48": "images/purple_plum/purple_plum_48.png",
-    "128": "images/purple_plum/purple_plum_128.png"
+    "16": "images/plum/purple_16.png",
+    "32": "images/plum/purple_32.png",
+    "48": "images/plum/purple_48.png",
+    "128": "images/plum/purple_128.png"
   },
 
   "browser_action": {
     "default_title": "Open Riker",
-    "default_icon": "images/purple_plum/purple_plum_128.png",
+    "default_icon": "images/plum/gray_128.png",
     "default_popup": "pages/popup.html"
   },
 
   "background": {
     "persistent": false,
     "page": "pages/background.html"
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
   },
 
   "content_scripts": [
@@ -37,7 +45,9 @@
   "options_page": "pages/options.html",
 
   "permissions": [
+    "tabs",
     "bookmarks",
+    "storage",
     "chrome://favicon/",
     "<all_urls>"
   ]

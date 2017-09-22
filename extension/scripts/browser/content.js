@@ -1,4 +1,4 @@
-// import { Messages } from './common';
+// import { Messages } from './messages';
 
 // const MIDDLE_BUTTON = 2;
 

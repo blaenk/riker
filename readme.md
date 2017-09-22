@@ -54,6 +54,7 @@ Originally I was thinking of storing these URLs in the extension using the stora
 
 * [ ] Save current tab.
 * [ ] Save selected tabs.
+* [ ] Option: Show success/error notification
 * [ ] Highlight icon when URL is already saved.
     * [ ] Highlight different shade if URL is similar, such as different hash or
           query parameters.
@@ -75,6 +76,8 @@ Originally I was thinking of storing these URLs in the extension using the stora
         * [ ] Default alarm preset (e.g. none)
     * [ ] Indicate when current tab URL is already saved.
     * [ ] Tab alarm.
+    * [ ] Warn if URL with different hash (query?) is already saved
+    * [ ] Show short stats (e.g. "42 links from this domain")
 * [ ] Tab alarm. See [snooze tabs].
     * [ ] Custom datetime with datetime picker.
     * [ ] Preset:
@@ -150,8 +153,15 @@ The plum icon was obtained from <https://icons8.com/icon/19526/plum>.
 
 Note that MDN's WebExtension docs tend to be more detailed than Chrome's.
 
-* [MDN - WebExtensions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)
-* [MDN - Porting a Google Chrome extension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_Google_Chrome_extension)
-* [MDN - Chrome Incompatibilities](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Chrome_incompatibilities)
-* [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)
-* https://www.extensiontest.com/
+* Documentation
+    * [MDN - WebExtensions](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)
+    * [Chrome API Index](https://developer.chrome.com/extensions/api_index)
+* Portability
+    * [MDN - Porting a Google Chrome extension](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_Google_Chrome_extension)
+    * [MDN - Chrome Incompatibilities](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Chrome_incompatibilities)
+    * [webextension-polyfill](https://github.com/mozilla/webextension-polyfill)
+    * https://www.extensiontest.com/
+* Testing
+    * [sinon-chrome](https://github.com/acvetkov/sinon-chrome)
+    * [Testing browser extensions](https://stackoverflow.com/questions/14798528/testing-browser-extensions/17370531#17370531)
+    * [How to test chrome extensions?](https://stackoverflow.com/questions/2869827/how-to-test-chrome-extensions)
