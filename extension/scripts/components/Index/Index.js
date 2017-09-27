@@ -1,48 +1,83 @@
 import browser from 'webextension-polyfill';
+import React from 'react';
 import moment from 'moment';
 
 import { Store, get } from '../../lib/storage';
 import * as messages from '../../lib/messages';
 
-// TODO
-// browser.storage.onChanged to monitor changes?
+class LinkItem extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default {
-  data() {
-    return {
-      links: {},
+    this.handleDeleteLink = this.handleDeleteLink.bind(this);
+  }
+
+  async handleDeleteLink() {
+    const message = new messages.DeleteLink(this.props.link.url);
+
+    await message.send();
+  }
+
+  render() {
+    return (
+      <li>
+        <button onClick={this.handleDeleteLink}>Delete</button>
+        <img src={this.props.link.url} width='16' height='16' />
+        <a href={this.props.link.url}>{this.props.link.title}</a>
+        saved {moment(this.props.link.date).fromNow()}
+      </li>
+    );
+  }
+}
+
+export default class Index extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      links: [],
     };
-  },
-  filters: {
-    formatDate(date) {
-      return moment(date).fromNow();
-    },
-  },
-  methods: {
-    onStorageChanged(changes, _areaName) {
-      if (changes.links && changes.links.newValue) {
-        this.links = changes.links.newValue;
-      }
-    },
-    async deleteLink(url) {
-      const message = new messages.DeleteLink(url);
 
-      await message.send();
-    },
-  },
-  computed: {
-    linksList() {
-      return Object.values(this.links);
-    },
-  },
-  async created() {
+    this.onStorageChanged = this.onStorageChanged.bind(this);
+  }
+
+  async componentWillMount() {
     const { links } = await get(Store.links.key);
 
-    this.links = links;
+    this.setState({ links });
 
     browser.storage.onChanged.addListener(this.onStorageChanged);
-  },
-  destroyed() {
+  }
+
+  componentWillUnmount() {
     browser.storage.onChanged.removeListener(this.onStorageChanged);
-  },
-};
+  }
+
+  onStorageChanged(changes, _areaName) {
+    if (changes.links && changes.links.newValue) {
+      this.setState({ links: changes.links.newValue });
+    }
+  }
+
+  render() {
+    const linksValues = Object.values(this.state.links);
+
+    const links = linksValues.map((link) => <LinkItem link={link} key={link.url} />);
+
+    const linkList = (
+      <ul>
+        {links}
+      </ul>
+    );
+
+    const noLinks = (
+      <p>No links!</p>
+    );
+
+    return (
+      <div>
+        {linksValues.length > 0 ? linkList : noLinks}
+      </div>
+    );
+  }
+}

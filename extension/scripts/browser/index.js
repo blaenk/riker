@@ -1,13 +1,10 @@
-import Vue from 'vue';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Index from '../components/Index/Index.vue';
+import Index from '../components/Index/Index';
 
 function onLoad(_event) {
-  // eslint-disable-next-line no-unused-vars
-  const vm = new Vue({
-    el: '#root',
-    render: (createElement) => createElement(Index),
-  });
+  ReactDOM.render(<Index />, document.querySelector('#root'));
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

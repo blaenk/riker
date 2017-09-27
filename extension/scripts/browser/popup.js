@@ -1,13 +1,10 @@
-import Vue from 'vue';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Popup from '../components/Popup/Popup.vue';
+import Popup from '../components/Popup/Popup';
 
 function onLoad(_event) {
-  // eslint-disable-next-line no-unused-vars
-  const vm = new Vue({
-    el: '#root',
-    render: (createElement) => createElement(Popup),
-  });
+  ReactDOM.render(<Popup />, document.querySelector('#root'));
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

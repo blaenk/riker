@@ -10,28 +10,47 @@
     "lint-extension": "web-ext lint --source-dir build/",
     "build": "NODE_ENV=production webpack --progress --colors",
     "build-dev": "NODE_ENV=development webpack --progress --colors",
+    "test": "jest",
     "watch": "NODE_ENV=development webpack --progress --colors --watch"
+  },
+  "jest": {
+    "setupFiles": [
+      "./jest"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
     "crx": "^3.2.1",
     "css-loader": "^0.28.7",
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-to-json": "^3.0.0",
     "eslint": "^4.6.1",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "inject-loader": "^3.0.1",
+    "jest": "^21.2.0",
+    "jsdom": "^11.2.0",
     "mocha": "^3.5.0",
     "prettier": "^1.6.1",
+    "react-devtools": "^2.5.2",
+    "react-devtools-core": "^2.5.2",
+    "react-test-renderer": "^16.0.0",
     "sinon": "^3.2.1",
-    "vue-loader": "^13.0.4",
-    "vue-template-compiler": "^2.4.2",
+    "sinon-chrome": "^2.2.1",
     "web-ext": "^2.0.0",
     "webpack": "^3.5.5",
     "webpack-shell-plugin": "^0.5.0"
@@ -40,7 +59,8 @@
     "bluebird": "^3.5.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "vue": "^2.4.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "webextension-polyfill": "^0.1.1"
   }
 }

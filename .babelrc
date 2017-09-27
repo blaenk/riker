@@ -1,12 +1,20 @@
 {
-  "presets": [[
-    "env", {
-      "useBuiltIns": true,
-      "debug": false,
-      "modules": false,
-      "targets": {
-        "chrome": 55
+  "presets": [
+    [
+      "env", {
+        "useBuiltIns": true,
+        "debug": false,
+        "modules": false,
+        "targets": {
+          "chrome": 55
+        }
       }
+    ],
+    "react"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["transform-es2015-modules-commonjs"]
     }
-  ]]
+  }
 }

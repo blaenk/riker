@@ -21,11 +21,15 @@ if (IS_PRODUCTION) {
   module.exports.devtool = 'source-map';
 }
 
+function devtoolsWrapper(filePath) {
+  return IS_PRODUCTION ? filePath : ['./extension/scripts/lib/devtools', filePath];
+}
+
 module.exports.entry = {
   background: path.join(browserPath, 'background.js'),
   content: path.join(browserPath, 'content.js'),
-  popup: path.join(browserPath, 'popup.js'),
-  index: path.join(browserPath, 'index.js'),
+  popup: devtoolsWrapper(path.join(browserPath, 'popup.js')),
+  index: devtoolsWrapper(path.join(browserPath, 'index.js')),
 };
 
 module.exports.output = {
@@ -85,11 +89,5 @@ module.exports.module = {
 module.exports.module.loaders.push({
   test: /\.js$/,
   loader: 'babel-loader',
-  include: [scriptsPath],
-});
-
-module.exports.module.loaders.push({
-  test: /\.vue$/,
-  loader: 'vue-loader',
   include: [scriptsPath],
 });
