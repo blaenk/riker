@@ -32,8 +32,7 @@ export default class Popup extends React.PureComponent {
 
   async handleSaveTab(_event) {
     try {
-      const currentTab = await tabs.current();
-      const message = new messages.SaveTab(currentTab);
+      const message = new messages.SaveTab(this.state.tab);
 
       await message.send();
 
@@ -45,8 +44,7 @@ export default class Popup extends React.PureComponent {
 
   async handleDeleteTab(_event) {
     try {
-      const currentTab = await tabs.current();
-      const message = new messages.DeleteTab(currentTab);
+      const message = new messages.DeleteTab(this.state.tab);
 
       await message.send();
 
