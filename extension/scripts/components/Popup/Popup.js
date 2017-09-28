@@ -54,7 +54,7 @@ export default class Popup extends React.PureComponent {
     }
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const tab = await tabs.current();
 
     this.setState({ tab });
