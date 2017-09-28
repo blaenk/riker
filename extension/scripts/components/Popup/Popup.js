@@ -89,8 +89,11 @@ export default class Popup extends React.PureComponent {
 
     return (
       <div>
-        <img src={this.state.tab.favIconUrl} width='16' height='16' />
-        <a href={this.state.tab.url}>{this.state.tab.title}</a>
+        <div className='tab-info'>
+          <img className='tab-favicon' src={this.state.tab.favIconUrl} width='16' height='16' />
+
+          <div className='tab-title'>{this.state.tab.title}</div>
+        </div>
 
         {actionButton}
 
