@@ -6,7 +6,7 @@ import { Store, get } from '../../lib/storage';
 import * as messages from '../../lib/messages';
 import * as tabs from '../../lib/tabs';
 
-export default class Popup extends React.Component {
+export default class Popup extends React.PureComponent {
   constructor(props) {
     super(props);
 
