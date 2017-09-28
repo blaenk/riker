@@ -75,11 +75,11 @@ export default class Popup extends React.PureComponent {
   }
 
   render() {
-    let actionButton;
-
     if (!this.state.tab) {
       return null;
     }
+
+    let actionButton;
 
     if (this.state.link) {
       actionButton = <button onClick={this.handleDeleteTab}>Delete</button>;
